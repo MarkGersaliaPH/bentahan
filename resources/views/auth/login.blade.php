@@ -1,69 +1,82 @@
-@extends('layouts.auths')
+@extends('layouts.sub-page')
+@section('content') 
 
-@section('content')
-<div class="container">
+<div class="container padding-y-sm" style="width: 500px">
+
+<div class="card card-body border">
+
+<form method="POST" action="{{ route('login') }}">
+    {{ csrf_field() }}
+<article class="card-body">
+    <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+    <h4 class="card-title mb-4 mt-1">Sign in</h4>
+    <p>
+        <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i> &nbsp; Login via Twitter</a>
+        <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> &nbsp; Login via facebook</a>
+    </p>
+    <br>
+    <div class="form-group input-icon">
+        <i class="fa fa-user"></i>
+        <input name="email" class="form-control" placeholder="Email or login" value="{{ old('email') }}" required autofocus>
+    </div> <!-- form-group// -->
+    <div class="form-group input-icon">
+        <i class="fa fa-lock"></i> 
+        <input class="form-control" placeholder="******" type="password"  name="password" required>
+    </div> <!-- form-group// -->                                      
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+            </div> <!-- form-group// -->
         </div>
-    </div>
+        <div class="col-md-6 text-right">
+            <a class="small" href="#">Forgot password?</a>
+        </div>                                            
+    </div> <!-- .row// -->  
+
+</article>
+</form>
+</div> <!-- card.// -->
+</div> <!-- card.// -->
+<br>
+<section class="bg-light">
+<div class="container padding-top padding-bottom">
+    
+<div class="row">
+<div class="col-md-6">  
+    <article class="box">
+            <figure class="itemside">
+                <div class="aside align-self-center">
+                    <span class="icon-wrap icon-md round bg-warning">
+                        <i class="fa fa-lightbulb white"></i>
+                    </span>
+                </div>
+                <figcaption class="text-wrap">
+                    <h5 class="title">Sync across all devices</h5>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labor </p>
+                </figcaption>
+            </figure> <!-- iconbox // -->
+        </article> <!-- panel-lg.// -->
+    </div><!-- col // -->
+    <div class="col-md-6">
+        <article class="box">
+            <figure class="itemside">
+                <div class="aside align-self-center">
+                    <span class="icon-wrap icon-md round bg-danger">
+                        <i class="fa fa-lock white"></i>
+                    </span>
+                </div>
+                <figcaption class="text-wrap">
+                <h5 class="title">Secured protocol</h5>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt dolor laburab </p>
+                </figcaption>
+            </figure> <!-- iconbox // -->
+        </article> <!-- panel-lg.// -->
+    </div><!-- col // -->
+</div> <!-- row.// -->
+
 </div>
+</section>
 @endsection

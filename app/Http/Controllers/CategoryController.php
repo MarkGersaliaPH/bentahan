@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Item;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -56,7 +57,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Request $request)
     {
         //
     }
@@ -67,7 +68,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function store_edit(Category $category)
     {
         //
     }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Store;
+use App\Item;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -82,9 +84,14 @@ class StoreController extends Controller
      * @param  \App\Store  $store
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store)
+    public function show(Request $request)
     {
-        //
+        // 
+        $id = $request->id;
+        $data['data'] = Store::where('user_id','=',$id)->first();
+        $data['items'] = Item::where('seller_id','=',$id)->get();
+        // echo $data;
+        return view('pages.store_view',$data);
     }
 
     /**
@@ -119,5 +126,52 @@ class StoreController extends Controller
     public function destroy(Store $store)
     {
         //
+    }
+
+    public function store_update_logo(Request $request){
+        $file = $request['logo']; 
+        $filename = $file->getClientOriginalName();   
+        $request->logo->storeAs('/public/uploads/',$filename);
+
+
+        $update = Store::where('user_id','=',Auth::user()->id)->update(['logo'=>$filename]);
+        if($update){
+            echo "Success";
+        }else{
+            echo "ERROR";
+        }
+        return redirect()->back();
+    }
+
+
+
+    public function store_update_banner(Request $request){
+        $file = $request['banner']; 
+        $filename = $file->getClientOriginalName();   
+        $request->banner->storeAs('/public/uploads',$filename);
+
+
+        $update = Store::where('user_id','=',Auth::user()->id)->update(['banner'=>$filename]);
+        if($update){
+            echo "Success";
+        }else{
+            echo "ERROR";
+        }
+        return redirect()->back();
+    }
+
+
+
+    /**
+     * Vendor sell items functions only the vendor with account can access this.
+     *
+     * @param  \App\Store  $store
+     * @return \Illuminate\Http\Response
+     */
+    public function itemSell(Store $store)
+    {
+        //
+        $pageTitle = 'Sell item';
+        return view('stores.sell',['pageTitle' => $pageTitle]);
     }
 }

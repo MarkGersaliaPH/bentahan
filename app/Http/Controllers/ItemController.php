@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\ItemReview;
 use App\User;
 use App\ItemImage;
 use App\Store;
 use Auth;
+use helpers;
 use DB;  
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
@@ -93,7 +95,7 @@ class ItemController extends Controller
             $userArray = array_merge($arr, $pass); 
 
             User::create($userArray);  
-            $seller_id = User::select('id')->orderBy('id','DESC')->first();
+            $user_id = User::select('id')->orderBy('id','DESC')->first();
             $item->seller_id = $seller_id->id;  
 
             //Get store details from form
@@ -130,12 +132,39 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show($slug,$id)
+    public function show(Request $request)
     {
-        //
-        $items = Item::find($id);
+        $reviews = new ItemReview();
+
+        $id = $request->id; 
+
+        $data['rating'] = $reviews->getTotalRatings($id);
+        $data['reviews_count'] = $reviews->reviews_count($id);
+        // 
+        $data['item'] = Item::find($id);  
+        $data['mightAlsoLike'] = Item::limit(3)->get();
         // echo $id;
-        return view('pages.product_view',['item'=>$items]);
+        return view('pages.product_view',$data);
+    }
+
+  
+
+    public function restock($id){
+        return Item::find($id);
+    }
+
+    public function updateStock(Request $request){
+        
+        $items = Item::find($request->id);
+        $newStock = $items->stock + $request->new_stock;
+        // echo $newStock;
+        $items->stock = $newStock;
+        if($items->save()){
+            echo "Success";
+        }else{
+            echo "Not success";
+        }
+
     }
 
     /**
@@ -156,9 +185,10 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function store_update(Request $request, Item $item)
     {
         //
+       
     }
 
     /**

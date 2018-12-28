@@ -28,6 +28,12 @@ Route::get('category/destroy/{id}','CategoryController@destroy');
 
 Route::get('items/count','ItemController@count');
 
+Route::get('items/restock/{id}','ItemController@restock');
+Route::post('items/restock2/','ItemController@updateStock');
+
+Route::get('item/status/{status}/{id}','OrderController@update_status');
+Route::get('item/status/{status}/{id}','OrderController@update_status');
+
 Route::get('customers/customerCount','UserController@customerCount');
 
 Route::get('store/count','StoreController@count');
@@ -35,3 +41,13 @@ Route::get('store/count','StoreController@count');
 Route::get('categories/count','CategoryController@count');
 
 Route::any('billing_address/store','BillingAddressController@store');
+
+
+//Cart functions
+Route::get('cart/add/{quantity}/{id}','CartController@add2');
+Route::any('cart/count','CartController@count');
+Route::any('cart/remove/{id}','CartController@remove');
+Route::POST('cart/updateQuantity/','CartController@updateQuantity');
+
+
+

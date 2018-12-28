@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
    
-use App\BillingAddress;
+use App\Address;
 use Illuminate\Http\Request;
 use Auth;
 
-class BillingAddressController extends Controller
+class AddressController extends Controller
 {
 
 

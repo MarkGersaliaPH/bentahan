@@ -31,8 +31,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Item','seller');
     }
 
-    public function billingAddress(){
-        return $this->HasOne('App\BillingAddress','user_id');
+    public function complete_address(){
+        return $this->HasOne('App\Address','user_id','id');
     }
 
     public function store(){ 
@@ -41,6 +41,10 @@ class User extends Authenticatable
 
     public function adminDetails(){
         return $this->HasOne('App\AdminDetail','user_id');
+    }
+
+    public function reviews(){
+        return $this->HasMany('App\ItemReview','user_id');
     }
 
 

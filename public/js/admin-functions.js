@@ -60,7 +60,8 @@ var adminfunctions = {
                 url:'/api/category/store', 
                 data:{InputData},
                 success:function(response){
-                    $('#content').load(window.location.href + ' #content');
+                    
+                $('#categoryContainer').load(window.location.href + ' #categoryContainer'); 
                     $('#inputCategory').val(''); 
                 }
             })

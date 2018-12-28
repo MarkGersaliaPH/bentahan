@@ -1,4 +1,4 @@
- <footer>
+ <footer class="padding-y">
         <section>
                 {{-- <section>
                 <div class="upper-footer">

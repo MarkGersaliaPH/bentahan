@@ -12,9 +12,7 @@
 
 
 <link rel="stylesheet" href="{{asset('datatables/css/dataTables.bootstrap.min.css')}}">
-    {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> --}}
-{{-- <link rel="stylesheet" href="{{asset('src/css/settings.css')}}"> --}}
-{{-- <link rel="stylesheet" href="{{asset('css/paper.css')}}">  --}}
+   
 <link rel="stylesheet" href="{{asset('css/default.css')}}">
 <link rel="stylesheet" href="{{asset('css/admin-dashboard.css')}}">
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Open+Sans|Work+Sans" rel="stylesheet"> 

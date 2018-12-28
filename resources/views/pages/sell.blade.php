@@ -2,6 +2,9 @@
 @section('content')
 
 <section> 
+<input type="" id="test" name="number">
+
+
     <div class="container">
         <h2>  Sell your item </h2>
     <div class="content-container">
@@ -72,7 +75,7 @@
         </div> 
         <div class="form-group">
                 <label for="">Price:</label>
-                <input name="price" id="price" type="number" class="form-control">
+                <input name="price" id="price" type="number" class="form-control number">
         </div>
         <div class="form-group">
                 <label for="">Quantity:</label>
@@ -119,20 +122,20 @@ console.log(image);
  }
 }
 </script>
-
-
-<script>
-    // Doing this in a loaded JS file is better, I put this here for simplicity
-    $('#desc').trumbowyg();
-    $('#my-editor').trumbowyg();
-    $('#spec').trumbowyg(); 
-</script>
-                
                 
 <script>
 $(document).ready(function() {
 $('.js-example-basic-multiple').select2();
 });
+</script>
+
+<script type="text/javascript">
+
+        $(function(){
+            // Set up the number formatting. 
+            $('#test').number( true, 2 );
+             
+        });
 </script>
  
 @endsection

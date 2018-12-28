@@ -12,6 +12,11 @@ class Store extends Model
         return $this->belongsTo('App\User','user_id');
     }
 
+
+    public function items(){
+        return $this->HasMany('App\Item','seller_id','id');
+    }
+
     public function addedBy(){ 
         return $this->belongsTo('App\User','added_by');
     }

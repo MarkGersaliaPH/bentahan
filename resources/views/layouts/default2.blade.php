@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="{{asset('src/css/settings.css')}}">
 {{-- <link rel="stylesheet" href="{{asset('css/paper.css')}}">  --}}
 <link rel="stylesheet" href="{{asset('/css/default.css')}}">
+<link rel="stylesheet" href="{{asset('/css/alertify/alertify.css')}}">
+<link rel="stylesheet" href="{{asset('/css/alertify/themes/semantic.css')}}">
 <link rel="stylesheet" href="{{asset('richtext/ui/trumbowyg.min.css')}}">
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Open+Sans|Work+Sans" rel="stylesheet"> 
 {{-- <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Work+Sans" rel="stylesheet"> --}}
@@ -26,12 +28,13 @@
 <script src="{{asset('js/bootstrap.js')}}"></script>
 
 <script src="{{asset('js/jquery.number.min.js')}}"></script>
+<script src="{{asset('js/alertify.js')}}"></script>
 <script src="{{asset('richtext/trumbowyg.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 
 </head>
-
+ 
 <body>
     @include('layouts.heading')
     @yield('content')   

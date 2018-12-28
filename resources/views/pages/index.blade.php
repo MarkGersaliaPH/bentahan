@@ -1,76 +1,37 @@
-@extends('layouts.default')
-@section('content')
-
-<div class="white-bg">
-    <div class="container"> 
-        <section> 
-           
-            {{-- <img src="{{asset('storage/uploads/banner.jpg')}}" class="img img-responsive" alt=""> --}}
-            {{-- @include('carousell')  --}}
-
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-        <img src="{{asset('storage/uploads/banner.jpg')}}" class="img img-responsive" alt="">
+@extends('layouts.uikit')
+@section('content') 
+        @foreach($items as $item) 
+        <div class="col-sm-2" style="padding: 5px">
+          <figure class="main-item card card-product border-0">
+    <div class="img-wrap"> 
+      <img src="{{asset('storage/uploads/'.$item->images[0]->filename)}}">
+      {{-- <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a> --}}
     </div>
+    <figcaption class="info-wrap">
+      <a href="{{route('item_view',$item->id)}}" class="title text-body"> {{$item->title}}</a>
+      <input type="hidden" id="id" value="{{$item->id}}">
+      <div class="main_star_{{$item->id}}"></div>
+      {{App\ItemReview::reviews_count2($item->id)}} reviews
+      <div class="action-wrap">
+        <div class="price-wrap h5">
+          <span class="price-new text-success">{{$item->price}}</span>
+          <!-- <del class="price-old">$1980</del> -->
+        </div> <!-- price-wrap.// -->
+          
+      </div> <!-- action-wrap -->
+    </figcaption>
+  </figure> <!-- card // -->
 
-    <div class="item"> 
-        <img src="{{asset('storage/uploads/banner.jpg')}}" class="img img-responsive" alt="">
-    </div>
-
-    <div class="item"> 
-        <img src="{{asset('storage/uploads/banner.jpg')}}" class="img img-responsive" alt="">
-    </div>
   </div>
 
-  
-</div>
-        </section>
-    </div>
-</div>
-<section class="gray-bg"> 
-        <hr class="hr-bordered">  
-
-<div class="container">
-  <div class="col-sm-12">
-    
-        <h3><i class="fab fa-hotjar"></i> 
-            Featured Items</h3>
-  </div> 
-        @foreach($items as $item)
-        <div class="col-sm-2 padding-0">  
-             <a href="/product/view/{{str_slug($item->title)}}/{{$item->id}}">
-            <div class="item-box">
-                {{-- <div class="backdrop-image" style="background:url(storage/uploads/{{$item->images[0]->filename}})"> --}}
-                    <div class="item-box-image" style="background:url(storage/uploads/{{$item->images[0]->filename}})"> 
-                    </div> 
-                {{-- </div>/ --}}
-            <h5>
-                {{$item->title}}
-            </h5> 
-                <h3 class="text-danger price">&#8369; {{$item->price}}</h3> 
-           </a>
-
-           <i class="fa fa-star fa-sm text-warning"></i>
-           <i class="fa fa-star fa-sm text-warning"></i>
-           <i class="fa fa-star fa-sm text-warning"></i>
-           <i class="fa fa-star fa-sm text-warning"></i>
-           <i class="fa fa-star fa-sm text-warning"></i><br>
-           <p><a href="">3 reviews</a></p> 
-           <button class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i></button>
-           <button class="btn btn-link btn-sm" style="color:#666"><i class="fa fa-heart"></i></button>
-            </div>  
-        </div> 
+<script type="text/javascript">
+  var id = $('#id').val();
+$('.main_star_' + {{$item->id}}).starrr({
+  rating:{{App\ItemReview::getTotalRatings2($item->id)}},
+  readOnly: true,
+      emptyClass: 'far fa-star',
+      fullClass: 'fa fa-star',
+})
+</script>
         @endforeach 
-    </div>
-    </div>
-</section>
 @endsection
